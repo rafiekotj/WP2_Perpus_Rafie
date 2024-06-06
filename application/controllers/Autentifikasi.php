@@ -30,6 +30,7 @@ class Autentifikasi extends CI_Controller
     if ($this->form_validation->run() == false) {
       $data['judul'] = 'Login';
       $data['user'] = '';
+
       //kata 'login' merupakan nilai dari variabel judul dalam array $data dikirimkan ke view aute_header
       $this->load->view('templates/aute_header', $data);
       $this->load->view('autentifikasi/login');
@@ -150,5 +151,11 @@ class Autentifikasi extends CI_Controller
       $this->session->set_flashdata('pesan', '<div class="alert alert-success alert-message" role="alert">Selamat!! akun member anda sudah dibuat. Silahkan Aktivasi Akun anda</div>');
       redirect('autentifikasi');
     }
+  }
+  public function logout()
+  {
+    $item = array('email', 'role_id');
+    $this->session->unset_userdata($item);
+    redirect('autentifikasi');
   }
 }
